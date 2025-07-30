@@ -30,14 +30,14 @@ export class ShiftsService {
   }
 
   // מפקד יוצר שמירה חדשה
-  async createShift(body: { date: string; hour: string; location: string }) {
+  async createShift(body: { date: string; hour: string; location: string ,assigned_to: string}) {
     const { data, error } = await this.supabase
       .from('guard_shifts')
       .insert([{
         date: body.date,
         hour: body.hour,
         location: body.location,
-        assigned_to: null, // בהתחלה בלי חייל
+        assigned_to: body.assigned_to, 
         created_at: new Date().toISOString()
       }]);
 

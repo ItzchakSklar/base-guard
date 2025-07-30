@@ -32,7 +32,7 @@ export class UsersService {
     const existing = await this.findByUsername(username);
     
     if (existing) return { error: 'User already exists' };
-    if (role != 'soldier' && role != 'commander') return { error: 'role mast by or soldier or commander' };
+    if (role != 'soldier' && role != 'commander') return { error: 'Role must be either "soldier" or "commander"' };
 
     const hash = await bcrypt.hash(password, 10);
 
