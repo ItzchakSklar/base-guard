@@ -30,7 +30,9 @@ export class UsersService {
 
   async createUser(username: string, password: string, role: string) {
     const existing = await this.findByUsername(username);
+    
     if (existing) return { error: 'User already exists' };
+    if (role != 'soldier' && role != 'commander') return { error: 'Role must be either "soldier" or "commander"' };
 
     const hash = await bcrypt.hash(password, 10);
 
